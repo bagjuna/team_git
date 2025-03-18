@@ -4,6 +4,12 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 
+.write {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
 .board {
   width: 100%;
   border-collapse: collapse;
@@ -27,6 +33,11 @@
   background-color: #f9f9f9;
 }
 
+td a {
+  text-decoration: none;
+  color: black;
+}
+
 .pagenation {
   display: flex;
   justify-content: center;
@@ -39,21 +50,25 @@
   padding: 0;
 }
 
-.pagenation li {
-  margin: 0 5px;
-  padding: 8px 12px;
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
   border: 1px solid #ddd;
   border-radius: 50%;
   cursor: pointer;
   background-color: #f8f9fa;
 }
 
-.pagenation li:hover {
-  background-color: #007bff;
+.page:hover {
+  background-color: #7cbafc;
   color: white;
 }
 
-.pagenation li.active {
+.page.active {
   background-color: #007bff;
   color: white;
   font-weight: bold;
