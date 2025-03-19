@@ -5,84 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>게시판</title>
   <link rel="stylesheet" href="../css/board.css" />
+  <script>
+    function loadPosts() {
+      let posts = JSON.parse(localStorage.getItem("posts")) || [];
+      let tableBody = document.getElementById("postList");
+      tableBody.innerHTML = "";
+
+      posts.forEach((post, index) => {
+        let row = `
+                <tr onclick="goToDetail(${post.id})">
+                    <td>${index + 1}</td>
+                    <td><a href="./detail.html?id=${post.id}">${post.title}</a></td>
+                    <td>${post.nickname}</td>
+                    <td>${post.date}</td>
+                </tr>
+            `;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    function goToDetail(id) {
+      window.location.href = `detail.html?id=${id}`;
+    }
+
+    window.onload = loadPosts;
+  </script>
+  </head>
   <body>
-    <h1>게시판</h1>
-    <button class="write" onclick="location.href='./write.html'">
-      글 쓰기
-    </button>
-    <table class="board">
-      <thead>
-        <tr>
-          <th>번호</th>
-          <th>제목</th>
-          <th>닉네임</th>
-          <th>날짜</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td><a href="./detail.html">안녕하세요</a></td>
-          <td>안녕</td>
-          <td>2025.03.18</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td><a href="./detail.html">안녕하세요</a></td>
-          <td>안녕</td>
-          <td>2025.03.18</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td><a href="./detail.html">안녕하세요</a></td>
-          <td>안녕</td>
-          <td>2025.03.18</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td><a href="./detail.html">안녕하세요</a></td>
-          <td>안녕</td>
-          <td>2025.03.18</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td><a href="./detail.html">안녕하세요</a></td>
-          <td>안녕</td>
-          <td>2025.03.18</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td><a href="./detail.html">안녕하세요</a></td>
-          <td>안녕</td>
-          <td>2025.03.18</td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td><a href="./detail.html">안녕하세요</a></td>
-          <td>안녕</td>
-          <td>2025.03.18</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td><a href="./detail.html">안녕하세요</a></td>
-          <td>안녕</td>
-          <td>2025.03.18</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="pagenation">
-      <ul>
-        <li class="page active">1</li>
-        <li class="page">2</li>
-        <li class="page">3</li>
-        <li class="page">4</li>
-        <li class="page">5</li>
-        <li class="page">6</li>
-        <li class="page">7</li>
-        <li class="page">8</li>
-        <li class="page">9</li>
-        <li class="page">10</li>
-      </ul>
-    </div>
+  <h1>게시판</h1>
+  <button class="write" onclick="location.href='./write.html'">글 쓰기</button>
+
+  <table class="board">
+    <thead>
+    <tr>
+      <th>번호</th>
+      <th>제목</th>
+      <th>닉네임</th>
+      <th>날짜</th>
+    </tr>
+    </thead>
+    <tbody id="postList">
+    <!-- JavaScript로 채워질 부분 -->
+    </tbody>
+  </table>
   </body>
 </html>
